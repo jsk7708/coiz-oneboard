@@ -493,6 +493,7 @@ import type { DateRange } from "react-day-picker"
 import { format } from "date-fns"
 import OrganizationTab from "@/components/OrganizationTab" 
 import ToolSalesPivotTab from "@/components/ToolSalesPivotTab"
+import FBAStockTable from "@/components/FBAStock"
 
 // 타입
 type ChartItem = {
@@ -730,7 +731,9 @@ export default function DashboardPage() {
             <TabsTrigger value="reports">상세</TabsTrigger>
             <TabsTrigger value="analytics">분석</TabsTrigger>
             <TabsTrigger value="tool">공구판매</TabsTrigger>
+            <TabsTrigger value="FBAStock">FBA재고</TabsTrigger>
             <TabsTrigger value="organization">조직도</TabsTrigger>
+
           </TabsList>
           <TabsContent value="overview" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -928,6 +931,13 @@ export default function DashboardPage() {
             <Card>
               <CardContent className="px-0 pt-0">
                 <ToolSalesPivotTab />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="FBAStock" className="space-y-4">
+            <Card>
+              <CardContent className="px-0 pt-0">
+                <FBAStockTable />
               </CardContent>
             </Card>
           </TabsContent>

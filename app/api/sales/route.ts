@@ -286,7 +286,12 @@ export async function GET(req: NextRequest) {
           searchParams.get('clientName'),
           searchParams.get('month'),
         ]);
-        break;     
+        break;  
+       case 'get_fba_stock_pivot_by_month':
+        [rows] = await conn.query('CALL sp_fba_stock_pivot_by_month(?)', [
+            searchParams.get('month'),
+        ]);
+        break;   
       default:
         return NextResponse.json({ error: `알 수 없는 name: ${name}` }, { status: 400 });
     }
