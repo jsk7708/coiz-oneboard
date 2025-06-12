@@ -44,18 +44,27 @@ export async function POST(req: NextRequest) {
         );
         break;
       }
-
       // 두 번째 프로시저
-      case 'save_simple_status': {
-        const { member_name, status } = payload;
+     case 'sp_update_coiz_member_job_info': {
+      const {
+        member_name,
+        team_name,
+        task,
+        performance,
+        goal,
+        hope,
+        suggestion,
+        skill,
+        password
+      } = payload;
 
-        [result] = await conn.query(
-          'CALL sp_save_status(?, ?)',
-          [member_name, status]
-        );
-        break;
-      }
-
+      [result] = await conn.query(
+        'CALL sp_update_coiz_member_job_info(?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [member_name, team_name, task, performance, goal, hope, suggestion, skill, password]
+      );
+      break;
+    }
+      
       default:
         return NextResponse.json({ error: `알 수 없는 API 요청: ${api}` }, { status: 400 });
     }
